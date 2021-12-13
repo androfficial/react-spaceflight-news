@@ -1,0 +1,117 @@
+.posts {
+  padding-top: 50px;
+  &__container {
+  }
+  &__top {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+  &__bottom {
+  }
+  &__results {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #eaeaea;
+    &:not(:last-child) {
+      margin-bottom: 45px;
+    }
+  }
+  &__items {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, minmax(290px, 1fr));
+    @include adaptiv-value('gap', 45, 15, 1);
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, minmax(290px, 1fr));
+    }
+    @media (max-width: 700px) {
+      grid-template-columns: auto;
+    }
+  }
+  &__item {
+  }
+  &__preloader {
+    margin-top: 70px;
+  }
+  &__fail {
+    margin-top: 120px;
+  }
+}
+.top-posts {
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+  &__search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+  }
+  &__search-input {
+    padding-left: 30px;
+  }
+}
+.item-posts {
+  &__image-link {
+    position: relative;
+    display: block;
+    padding-bottom: math.div(217, 400) * 100%;
+    overflow: hidden;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease 0s;
+    }
+    @media (hover: hover) {
+      &:hover {
+        img {
+          transform: scale(1.03);
+        }
+      }
+    }
+  }
+  &__data {
+    margin-left: 8px !important;
+    font-size: 14px !important;
+    line-height: 150% !important;
+  }
+  &__title-link {
+    display: block;
+    h3 {
+      transition: color 0.3s ease 0s;
+    }
+    @media (hover: hover) {
+      &:hover {
+        h3 {
+          color: brown;
+        }
+      }
+    }
+  }
+  &__article-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: inherit;
+    font-weight: 700;
+    color: inherit;
+    text-transform: none;
+    transition: color 0.3s ease 0s;
+    svg {
+      transition: transform 0.3s ease 0s;
+    }
+    @media (hover: hover) {
+      &:hover {
+        color: brown;
+        svg {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+}

@@ -15,7 +15,13 @@ module.exports = {
     }
 
     alias({
+      '@api': './src/api',
+      '@assets': './src/assets',
       '@components': './src/components',
+      '@pages': './src/pages',
+      '@redux': './src/redux',
+      '@services': './src/services',
+      '@styles': './src/styles',
     })(config);
 
     return config;

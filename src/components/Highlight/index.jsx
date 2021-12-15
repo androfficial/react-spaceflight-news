@@ -1,17 +1,14 @@
 import React from 'react';
 
-import textTransform from '@services/textTransform';
-
 const highlightText = ({ str, value }) => {
-  const formattedStr = textTransform(str);
   if (!value) {
-    return formattedStr;
+    return str;
   }
   const regexp = new RegExp(value, 'ig');
-  const matchValue = formattedStr.match(regexp);
+  const matchValue = str.match(regexp);
 
   if (matchValue) {
-    return formattedStr.split(regexp).map((substr, index, array) => {
+    return str.split(regexp).map((substr, index, array) => {
       if (index < array.length - 1) {
         const foundDelMatch = matchValue.shift();
         return (
@@ -25,7 +22,7 @@ const highlightText = ({ str, value }) => {
     });
   }
 
-  return formattedStr;
+  return str;
 };
 
 export default highlightText;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import textTransform from '@services/textTransform';
 
 const instance = axios.create({
   method: 'get',
@@ -13,8 +14,8 @@ const mainAPI = {
       return data.map((obj) => ({
         id: obj.id,
         imageUrl: obj.imageUrl,
-        title: obj.title,
-        summary: obj.summary,
+        title: textTransform(obj.title),
+        summary: textTransform(obj.summary),
         publishedAt: obj.publishedAt.slice(0, 10),
       }));
     } catch (error) {

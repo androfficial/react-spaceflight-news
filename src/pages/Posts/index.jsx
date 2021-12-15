@@ -20,6 +20,7 @@ const Posts = () => {
 
   const handleChangeValue = (e) => setValue(e.target.value);
 
+  // Фильтрация по ключевым словам
   const filteredPosts = useMemo(() => {
     if (value) {
       return allPosts.reduce((acc, obj) => {

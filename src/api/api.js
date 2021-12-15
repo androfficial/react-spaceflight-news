@@ -13,8 +13,9 @@ const mainAPI = {
       return data.map((obj) => ({
         id: obj.id,
         imageUrl: obj.imageUrl,
-        summary: obj.summary,
         title: obj.title,
+        summary: obj.summary,
+        publishedAt: obj.publishedAt.slice(0, 10),
       }));
     } catch (error) {
       if (error.response) {

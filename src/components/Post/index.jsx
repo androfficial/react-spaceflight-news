@@ -18,7 +18,7 @@ import {
 import { Highlight } from '@components';
 import RobotImg from '@assets/images/Post/1.png';
 
-const Post = ({ id, imageUrl, title, summary, value }) => {
+const Post = ({ id, imageUrl, title, summary, publishedAt, value }) => {
   const lighten = useCallback(
     (str) => <Highlight str={str} value={value} />,
     [value]
@@ -54,7 +54,7 @@ const Post = ({ id, imageUrl, title, summary, value }) => {
         >
           <DateRangeIcon htmlColor='inherit' fontSize='small' />
           <Typography className='item-posts__data' component='h4'>
-            June 29th, 2021
+            {publishedAt}
           </Typography>
         </Box>
         <Link className='item-posts__title-link' to={`/posts/${id}`}>
@@ -94,6 +94,7 @@ Post.propTypes = {
   imageUrl: PropTypes.string,
   title: PropTypes.string,
   summary: PropTypes.string,
+  publishedAt: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -101,6 +102,7 @@ Post.defaultProps = {
   imageUrl: RobotImg,
   title: 'This is default article title.',
   summary: 'This is default article description.',
+  publishedAt: '31.12.2021',
   value: '',
 };
 

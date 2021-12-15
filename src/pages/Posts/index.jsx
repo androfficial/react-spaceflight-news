@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Fail, Post, Preloader } from '@components';
@@ -10,12 +10,35 @@ import { setIsLoaded, fetchPosts } from '@redux/actions/posts';
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
 
   const [allPosts, isLoaded, errorApi] = useSelector(({ posts }) => [
     posts.posts,
     posts.isLoaded,
     posts.errorApi,
   ]);
+
+  const handleChangeValue = (e) => setValue(e.target.value);
+
+  const filteredPosts = useMemo(() => {
+    if (value) {
+      return allPosts.reduce((acc, obj) => {
+        const matchValue = value.toLowerCase();
+        const { title, summary } = obj;
+
+        if (title.toLowerCase().includes(matchValue)) {
+          return [obj, ...acc];
+        }
+
+        if (summary.toLowerCase().includes(matchValue)) {
+          return [...acc, obj];
+        }
+
+        return acc;
+      }, []);
+    }
+    return allPosts;
+  }, [value, allPosts]);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -35,7 +58,8 @@ const Posts = () => {
           </Typography>
           <div className='top-posts__search-wrapper'>
             <TextField
-              fullWidth
+              value={value}
+              onChange={handleChangeValue}
               InputProps={{
                 startAdornment: (
                   <SearchIcon
@@ -47,6 +71,7 @@ const Posts = () => {
               variant='outlined'
               className='top-posts__search-input'
               placeholder='The most successful IT companies in 2020'
+              fullWidth
             />
           </div>
         </div>
@@ -59,12 +84,12 @@ const Posts = () => {
               component='h3'
               className='posts__results'
             >
-              Results: 6
+              Results: {filteredPosts.length}
             </Typography>
             {isLoaded ? (
               <div className='posts__items'>
-                {allPosts.map((obj, i) => (
-                  <Post key={`${obj.id}_${i}`} {...obj} />
+                {filteredPosts.map((obj, i) => (
+                  <Post key={`${obj.id}_${i}`} {...obj} value={value} />
                 ))}
               </div>
             ) : (

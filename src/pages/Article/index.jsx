@@ -27,10 +27,8 @@ const Article = () => {
 
   const { imageUrl, summary, title } = fullArticle;
 
-  // Если данные не получены и была засетана ошибка с апи запроса то отобразить компонент Fail
   const requestField = !isLoaded && errorApi && <Fail addClass='page__fail' />;
 
-  // Если данные не получены то отобразить прелоадер
   const loading = !isLoaded && (
     <Preloader addClass='page__preloader' text='Article is loading' />
   );

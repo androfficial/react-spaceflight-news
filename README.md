@@ -2,7 +2,7 @@
 
 News reader for the Spaceflight News API: browse the latest spaceflight articles, filter them by keyword with the matches highlighted, and open any article on its own page. Built in December 2021 as a take-home assignment.
 
-**Live demo:** [brave-colden-949cca.netlify.app](https://brave-colden-949cca.netlify.app)
+**Live demo:** [react-spaceflight-news.vercel.app](https://react-spaceflight-news.vercel.app)
 
 ## Features
 
@@ -17,12 +17,12 @@ News reader for the Spaceflight News API: browse the latest spaceflight articles
 
 - **Framework:** React 17, PropTypes
 - **State:** Redux 4, Redux Thunk 2, React Redux 7
-- **Data:** Axios 0.24, Spaceflight News API v3
+- **Data:** Axios 0.24, Spaceflight News API v4
 - **Routing:** React Router 6
 - **UI:** Material UI 5 (components and icons), Emotion 11
 - **Styling:** SCSS (Dart Sass 1), classnames, local Roboto fonts
 - **Tooling:** Create React App 4 with react-app-rewired and react-app-rewire-alias, ESLint 7 (Airbnb config), Stylelint 14, Prettier 2, Husky 7, lint-staged 12
-- **Hosting:** Netlify
+- **Hosting:** Vercel
 
 ## Getting started
 
@@ -66,4 +66,3 @@ src/
 - `config-overrides.js` extends Create React App through react-app-rewired: it adds the `@api`, `@assets`, `@components`, `@pages`, `@redux`, `@services` and `@styles` import aliases and runs Stylelint in the development build.
 - `yarn install` sets up Husky, whose pre-commit hook runs lint-staged: the Prettier check, ESLint and Stylelint.
 - The API returns only a summary, so on the article page the summary is followed by four paragraphs of lorem ipsum placeholder text.
-- The app calls version 3 of the Spaceflight News API. The API has since moved to version 4, so v3 may no longer answer, and the pages then show the error message.
